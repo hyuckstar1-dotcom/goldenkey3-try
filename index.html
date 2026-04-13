@@ -1,33 +1,32 @@
-function saveData() {
-  const date = document.getElementById("date").value;
-  const sector = document.getElementById("sector").value;
-  const stock = document.getElementById("stock").value;
-  const memo = document.getElementById("memo").value;
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>GoldenKey App</title>
+</head>
+<body>
 
-  const data = { date, sector, stock, memo };
+<h1>📊 주도섹터 기록 앱</h1>
 
-  let list = JSON.parse(localStorage.getItem("dataList")) || [];
-  list.push(data);
+<h3>날짜 선택</h3>
+<input type="date" id="date">
 
-  localStorage.setItem("dataList", JSON.stringify(list));
+<h3>섹터 입력</h3>
+<input type="text" id="sector">
 
-  showData();
-}
+<h3>종목 입력</h3>
+<input type="text" id="stock">
 
-function showData() {
-  let list = JSON.parse(localStorage.getItem("dataList")) || [];
-  let html = "";
+<h3>메모</h3>
+<textarea id="memo"></textarea>
 
-  list.forEach(item => {
-    html += `<p>
-      📅 ${item.date} <br>
-      📊 ${item.sector} <br>
-      🏢 ${item.stock} <br>
-      📝 ${item.memo}
-    </p><hr>`;
-  });
+<br><br>
+<button onclick="saveData()">저장</button>
 
-  document.getElementById("result").innerHTML = html;
-}
+<h3>📌 저장된 데이터</h3>
+<div id="result"></div>
 
-showData();
+<script src="app.js"></script>
+
+</body>
+</html>
