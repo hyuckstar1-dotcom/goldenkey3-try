@@ -1,0 +1,33 @@
+function saveData() {
+  const date = document.getElementById("date").value;
+  const sector = document.getElementById("sector").value;
+  const stock = document.getElementById("stock").value;
+  const memo = document.getElementById("memo").value;
+
+  const data = { date, sector, stock, memo };
+
+  let list = JSON.parse(localStorage.getItem("dataList")) || [];
+  list.push(data);
+
+  localStorage.setItem("dataList", JSON.stringify(list));
+
+  showData();
+}
+
+function showData() {
+  let list = JSON.parse(localStorage.getItem("dataList")) || [];
+  let html = "";
+
+  list.forEach(item => {
+    html += `<p>
+      📅 ${item.date} <br>
+      📊 ${item.sector} <br>
+      🏢 ${item.stock} <br>
+      📝 ${item.memo}
+    </p><hr>`;
+  });
+
+  document.getElementById("result").innerHTML = html;
+}
+
+showData();
